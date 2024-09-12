@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using Mirror;
 
 public class Game
 {
@@ -34,7 +35,7 @@ public class Game
     }
 }
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     private Game _currentGame;
     [SerializeField] private Transform _enemyHand;
@@ -48,6 +49,9 @@ public class GameManager : MonoBehaviour
 
     private Coroutine _turnCoroutine;
 
+    private PlayerManager _localPlayer;
+    private List<Card> _playerDeck;
+
     public bool isSelfTurn
     {
         get
@@ -59,9 +63,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _turn = 0;
-
+        _playerDeck = DeckHolder.Instance.playerDeck;
         _currentGame = new Game();
-        GiveHandCard(_currentGame.selfDeck, _selfHand);
+
+        GiveHandCard(_playerDeck, _selfHand);
         GiveHandCard(_currentGame.enemyDeck, _enemyHand);
 
         StartNewTurn();
@@ -116,7 +121,7 @@ public class GameManager : MonoBehaviour
     private void GiveNewCards()
     {
         GiveCardToHand(_currentGame.enemyDeck, _enemyHand);
-        GiveCardToHand(_currentGame.selfDeck, _selfHand);
+        GiveCardToHand(_playerDeck, _selfHand);
     }
 
     private IEnumerator TurnFunc()
@@ -142,5 +147,12 @@ public class GameManager : MonoBehaviour
         }
 
         ChangeTurn();
+    }
+
+    public void SetLocalPlayer(PlayerManager localPlayer)
+    {
+        _localPlayer = localPlayer;
+
+        Debug.Log("Local player set in GameManager.");
     }
 }
