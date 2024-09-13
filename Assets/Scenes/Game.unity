@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754340bb0a8e00744931e38c71cf16b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 3
 --- !u!114 &403760344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,7 +972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754340bb0a8e00744931e38c71cf16b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
 --- !u!114 &1221271951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754340bb0a8e00744931e38c71cf16b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 5
 --- !u!114 &1321523030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754340bb0a8e00744931e38c71cf16b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
 --- !u!114 &1619807708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1632,9 +1632,13 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  _enemyHand: {fileID: 403760342}
-  _selfHand: {fileID: 998569432}
   _cardPrefab: {fileID: 1606402170329116497, guid: ffeb54c59dda8ca40835208ac4a1e701, type: 3}
+  _selfHand: {fileID: 998569432}
+  _selfFrontField: {fileID: 1605798620}
+  _selfBackField: {fileID: 1619807706}
+  _enemyHand: {fileID: 403760342}
+  _enemyFrontField: {fileID: 1221271949}
+  _enemyBackField: {fileID: 1321523028}
   _turnTimeText: {fileID: 1337910187}
   _endTurnButton: {fileID: 1896332386}
 --- !u!4 &1671485179

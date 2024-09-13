@@ -5,51 +5,28 @@ using TMPro;
 using System.Collections;
 using Mirror;
 
-public class Game
-{
-    public List<Card> enemyDeck;
-    private List<Card> _enemyHand;
-    private List<Card> _enemyField;
-    public List<Card> selfDeck;
-    private List<Card> _selfHand;
-    private List<Card> _selfField;
-
-    public Game()
-    {
-        enemyDeck = GiveDeckCard();
-        selfDeck = GiveDeckCard();
-
-        _enemyHand = new List<Card>();
-        _selfHand = new List<Card>();
-
-        _enemyField = new List<Card>();
-        _selfField = new List<Card>();
-    }
-
-    private List<Card> GiveDeckCard()
-    {
-        List<Card> list = new List<Card>();
-        for (int i = 0; i < 10; i++)
-            list.Add(CardList.AllCards[Random.Range(0, CardList.AllCards.Count)]);
-        return list;
-    }
-}
 
 public class GameManager : NetworkBehaviour
 {
+    public static GameManager Instance { get; private set; }
     private Game _currentGame;
-    [SerializeField] private Transform _enemyHand;
-    [SerializeField] private Transform _selfHand;
     [SerializeField] private GameObject _cardPrefab;
 
-    private int _turn;
-    private int _turnTime;
+    [Header("Fields")]
+    [SerializeField] private Transform _selfHand;
+    [SerializeField] private Transform _selfFrontField;
+    [SerializeField] private Transform _selfBackField;
+    [SerializeField] private Transform _enemyHand;
+    [SerializeField] private Transform _enemyFrontField;
+    [SerializeField] private Transform _enemyBackField;
+
+    [Header("Turn & Time")]
     [SerializeField] private TextMeshProUGUI _turnTimeText;
     [SerializeField] private Button _endTurnButton;
-
+    private int _turn;
+    private int _turnTime;
     private Coroutine _turnCoroutine;
 
-    private PlayerManager _localPlayer;
     private List<Card> _playerDeck;
 
     public bool isSelfTurn
@@ -60,8 +37,20 @@ public class GameManager : NetworkBehaviour
         }
     }
 
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
+        if (PlayerManager.Instance != null && EnemyManager.Instance != null)
+        {
+            SetLocalPlayer(PlayerManager.Instance);
+            SetEnemyPlayer(EnemyManager.Instance);
+        }
+
         _turn = 0;
         _playerDeck = DeckHolder.Instance.playerDeck;
         _currentGame = new Game();
@@ -151,8 +140,15 @@ public class GameManager : NetworkBehaviour
 
     public void SetLocalPlayer(PlayerManager localPlayer)
     {
-        _localPlayer = localPlayer;
+        localPlayer.handTransform = _selfHand;
+        localPlayer.frontFieldTransform = _selfFrontField;
+        localPlayer.backFieldTransform = _selfBackField;
+    }
 
-        Debug.Log("Local player set in GameManager.");
+    public void SetEnemyPlayer(EnemyManager enemyPlayer)
+    {
+        enemyPlayer.handTransform = _enemyHand;
+        enemyPlayer.frontFieldTransform = _enemyFrontField;
+        enemyPlayer.backFieldTransform = _enemyBackField;
     }
 }

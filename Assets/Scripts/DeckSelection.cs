@@ -35,7 +35,7 @@ public class DeckSelectionMenu : MonoBehaviour
 
         if (selectedDeck != null && selectedDeck.Count > 0)
         {
-            DeckHolder.Instance.SetPlayerDeck(selectedDeck);
+            DeckHolder.Instance.SetDeck(selectedDeck);
         }
         else
         {

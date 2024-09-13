@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,14 +10,15 @@ public class DeckHolder : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-            Destroy(gameObject);
+        Instance = this;
     }
 
-    public void SetPlayerDeck(List<Card> deck) => playerDeck = deck;
+    public void SetDeck(List<Card> selectedDeck)
+    {
+        playerDeck = selectedDeck;
+        if (NetworkClient.active && PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.CmdSetDeck(selectedDeck);
+        }
+    }
 }

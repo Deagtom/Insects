@@ -1,0 +1,9 @@
+public enum FieldType
+{
+    SELF_HAND,
+    SELF_FRONT_FIELD,
+    SELF_BACK_FIELD,
+    ENEMY_HAND,
+    ENEMY_FRONT_FIELD,
+    ENEMY_BACK_FIELD
+}

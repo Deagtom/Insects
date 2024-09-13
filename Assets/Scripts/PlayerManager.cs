@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using System.Collections.Generic;
 
 public class PlayerManager : NetworkBehaviour
 {
@@ -7,15 +8,41 @@ public class PlayerManager : NetworkBehaviour
     public Transform frontFieldTransform;
     public Transform backFieldTransform;
 
-    private GameManager _gameManager;
-    
+    public static PlayerManager Instance { get; private set; }
+
+    [SyncVar] 
+    public List<Card> playerDeck;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
+
     void Start()
     {
-        _gameManager = FindFirstObjectByType<GameManager>();
-
         if (!isLocalPlayer)
             this.enabled = false;
         else
-            _gameManager.SetLocalPlayer(this);
+            GameManager.Instance.SetLocalPlayer(this);
+    }
+
+    [Command]
+    public void CmdSetDeck(List<Card> selectedDeck)
+    {
+        playerDeck = selectedDeck;
+
+        RpcSetDeck(selectedDeck);
+    }
+
+    [ClientRpc]
+    void RpcSetDeck(List<Card> selectedDeck)
+    {
+        playerDeck = selectedDeck;
     }
 }
