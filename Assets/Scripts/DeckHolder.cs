@@ -6,7 +6,7 @@ public class DeckHolder : MonoBehaviour
 {
     public static DeckHolder Instance { get; private set; }
 
-    public List<Card> playerDeck;
+    public List<Card> playerDeck = new List<Card>();
 
     private void Awake()
     {
@@ -15,10 +15,16 @@ public class DeckHolder : MonoBehaviour
 
     public void SetDeck(List<Card> selectedDeck)
     {
-        playerDeck = selectedDeck;
-        if (NetworkClient.active && PlayerManager.Instance != null)
+        playerDeck.Clear();
+        foreach (var card in selectedDeck)
         {
-            PlayerManager.Instance.CmdSetDeck(selectedDeck);
+            playerDeck.Add(card);
+        }
+
+        if (NetworkClient.active)
+        {
+            PlayerManager playerManager = FindAnyObjectByType<PlayerManager>();
+            playerManager.CmdSetDeck(playerDeck);
         }
     }
 }

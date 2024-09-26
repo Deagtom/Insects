@@ -361,6 +361,8 @@ GameObject:
   - component: {fileID: 1385869715999296175}
   - component: {fileID: 8339406774672235094}
   - component: {fileID: 3960290987108134319}
+  - component: {fileID: -1749849769129090634}
+  - component: {fileID: 2027771328702480076}
   m_Layer: 5
   m_Name: CardPrefab
   m_TagString: Untagged
@@ -453,6 +455,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387290fb79156fa4a8ae42503e879d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selfCard:
+    name: 
+    info: 
+    imagePath: 
+    attack: 0
+    defence: 0
+    id: 0
   image: {fileID: 5375022634251791934}
   cardName: {fileID: 4675980536429457595}
   info: {fileID: 101560348705715349}
@@ -475,6 +484,58 @@ MonoBehaviour:
   defaultParent: {fileID: 0}
   defaultTempCardParent: {fileID: 0}
   isDraggable: 0
+--- !u!114 &-1749849769129090634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606402170329116497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 4169686483
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
+--- !u!114 &2027771328702480076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606402170329116497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 7581201523091347818}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 1
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  bufferResetMultiplier: 3
+  changedDetection: 1
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
 --- !u!1 &5094581430261782967
 GameObject:
   m_ObjectHideFlags: 0

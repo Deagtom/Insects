@@ -13,7 +13,6 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private GameObject _tempCard;
 
     private static bool _isDragNow;
-    private GameManager _gameManager;
     public bool isDraggable;
 
     private void Awake()
@@ -22,7 +21,6 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         _mainCamera = Camera.main;
         _tempCard = GameObject.Find("TempCard");
-        _gameManager = FindAnyObjectByType<GameManager>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -31,8 +29,8 @@ public class CardMovement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         
         defaultParent = defaultTempCardParent = transform.parent;
 
-        isDraggable = defaultParent.GetComponent<DropPlaceScript>().type == FieldType.SELF_HAND &&
-                      _gameManager.isSelfTurn;
+        isDraggable = defaultParent.GetComponent<DropPlaceScript>().type == FieldType.FIRST_PLAYER_HAND &&
+                      TurnManager.Instance.IsPlayerTurn;
 
         if (!isDraggable)
             return;

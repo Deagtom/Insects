@@ -7,7 +7,7 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler, IPointerEnterHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (type == FieldType.ENEMY_FRONT_FIELD || type == FieldType.ENEMY_BACK_FIELD || type == FieldType.ENEMY_HAND)
+        if (type == FieldType.SECOND_PLAYER_HAND_HAND_FRONT_FIELD || type == FieldType.SECOND_PLAYER_HAND_HAND_BACK_FIELD || type == FieldType.SECOND_PLAYER_HAND_HAND)
             return;
 
         CardMovement card = eventData.pointerDrag.GetComponent<CardMovement>();
@@ -17,7 +17,7 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (eventData.pointerDrag == null || type == FieldType.ENEMY_FRONT_FIELD || type == FieldType.ENEMY_BACK_FIELD || type == FieldType.ENEMY_HAND)
+        if (eventData.pointerDrag == null || type == FieldType.SECOND_PLAYER_HAND_HAND_FRONT_FIELD || type == FieldType.SECOND_PLAYER_HAND_HAND_BACK_FIELD || type == FieldType.SECOND_PLAYER_HAND_HAND)
             return;
 
         CardMovement card = eventData.pointerDrag.GetComponent<CardMovement>();

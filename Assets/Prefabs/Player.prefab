@@ -145,6 +145,14 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  playerName: 
+  isReady: 0
+  isFirstPlayer: 0
+  imagePath: "Sprites/Cards/\u0420\u0443\u0431\u0430\u0448\u043A\u0430"
   handTransform: {fileID: 0}
   frontFieldTransform: {fileID: 0}
   backFieldTransform: {fileID: 0}
+  hand: []
+  frontField: []
+  backField: []
+  deck: []
